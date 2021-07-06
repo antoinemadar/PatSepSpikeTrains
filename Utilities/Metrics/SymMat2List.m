@@ -7,9 +7,8 @@ function [list, average, sem] = SymMat2List(X)
     
 nanmask = ones(size(X));
 nanmask = triu(nanmask,1)./triu(nanmask,1);
-list = nanmask.*triu(X, 1);
+list = X(~isnan(nanmask));
 average = mean( list,'omitnan' );
 sem  = std( list )./sqrt(length(list));
-list = list(~isnan(list));
 
 end
